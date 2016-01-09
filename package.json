@@ -11,5 +11,8 @@
     "flickr"
   ],
   "author": "Carlos Andrés López",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^12.0.1"
+  }
 }
