@@ -13,6 +13,11 @@
   "author": "Carlos Andrés López",
   "license": "MIT",
   "dependencies": {
-    "hapi": "^12.0.1"
+    "async": "^1.5.2",
+    "flickrapi": "^0.3.36",
+    "hapi": "^12.0.1",
+    "hoek": "^3.0.4",
+    "util": "^0.10.3",
+    "wreck": "^7.0.0"
   }
 }
