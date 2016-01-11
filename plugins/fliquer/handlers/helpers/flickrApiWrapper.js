@@ -1,16 +1,13 @@
 var Util = require('util');
 var Wreck = require('wreck');
 var Boom = require('Boom');
-var Hoek = require('hoek');
-
-var api_key = 'c7749bb2d38cb84d3a52bcd1cc960a17';
 
 var FlickrAPI = {
-    _defaults:{
-        host: 'https://api.flickr.com/services/rest/',
+    options: {
+        host: null,
         methods: {
-            search: '?method=flickr.photos.search&api_key=' + api_key,
-            image: '?method=flickr.photos.getSizes&api_key=' + api_key
+            search: '?method=flickr.photos.search',
+            image: '?method=flickr.photos.getSizes'
         },
         uris: {
             search: function (term, limit, offset) {
@@ -35,7 +32,18 @@ var FlickrAPI = {
         }
     },
     initialize: function(options) {
-        this.options = Hoek.applyToDefaults(this._defaults, options || {});
+        var api_key;
+
+        if (options.host || options.api_key) {
+
+            api_key = "&api_key=" + options.api_key;
+            this.options.host = options.host;
+            this.options.methods.search += api_key;
+            this.options.methods.image += api_key;
+
+        } else {
+            throw Error('Not host or api_key provided for flickr');
+        }
     },
     searchImages: function(template, term, limit, offset, callback) {
 
@@ -73,7 +81,7 @@ var FlickrAPI = {
             }
 
             // respond with a 500 if due to whatever reason no images are found
-            if (response.stat !== 'ok') {
+            if (response.stat !== 'ok' || parseInt(response.photos.total) === 0) {
                 return callback(Boom.wrap(new Error(), 500));
             }
 
@@ -115,6 +123,7 @@ var FlickrAPI = {
 
             res.data = response.photos.photo.map(function(photo){
                 return {
+                    type: 'image',
                     id: photo.id,
                     title: photo.title
                 };
@@ -179,7 +188,5 @@ var FlickrAPI = {
 };
 
 var wrapper = Object.create(FlickrAPI);
-
-wrapper.initialize();
 
 module.exports = wrapper;

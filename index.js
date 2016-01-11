@@ -1,20 +1,21 @@
-var Hapi = require('hapi');
-var Routes = require('./routes.js');
+var Confidence = require('confidence');
+var Glue = require('glue');
+var Hoek = require('hoek');
 
 
-
-var server = new Hapi.Server();
-server.connection({
-    port: 4000
+var manifest = new Confidence.Store(require('./config')).get('/', {
+    env: process.env.NODE_ENV
 });
 
-server.route(Routes);
+var options = { relativeTo: __dirname };
 
-// server.on('request-error', function (request, response) {
-//     console.log('request-error:');
-// });
+Glue.compose(manifest, options, function (err, server) {
 
 
-server.start(function() {
-    console.log('Server running at:', server.info.uri);
+    Hoek.assert(!err, err);
+    server.start(function (err){
+
+        Hoek.assert(!err, err);
+        console.log('Server started at: ' + server.info.uri);
+    });
 });

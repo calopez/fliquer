@@ -1,0 +1,50 @@
+{
+    "server": {
+        "app": {
+            "appName": "simple flickr api wrapper with pagination"
+        },
+        "debug": {
+            "$filter": "env",
+            "$base": {
+                "request": ["error"]
+            },
+            "$default": {
+                "log": ["info", "error", "connection", "client"]
+            },
+            "production": {
+                "log": ["error"]
+            }
+        }
+    },
+    "connections": {
+        "$filter": "env",
+        "production": [
+            { "port": 80, "labels": ["api"] }
+        ],
+        "$default": [
+            { "port": 4000, "labels": ["api"]  }
+        ]
+    },
+    "registrations": {
+        "$filter": "env",
+        "production": [
+
+            {
+                "plugin":  "./plugins/fliquer",
+                "options": { "select": ["api"]}
+            }
+        ],
+        "$default": [
+            {
+                "plugin":{
+                    "register": "./plugins/fliquer",
+                    "options": {
+                        "api_key": "c7749bb2d38cb84d3a52bcd1cc960a17",
+                        "host": "https://api.flickr.com/services/rest/"
+                    }
+                },
+                "options": {"select": ["api"]}
+            }
+        ]
+    }
+}

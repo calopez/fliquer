@@ -1,0 +1,15 @@
+{
+  "name": "fliquer",
+  "version": "0.0.0",
+  "description": "Passthrough search endpoint for Flickr API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hapijs",
+    "flickr"
+  ],
+  "author": "Carlos Andrés López",
+  "license": "MIT"
+}
