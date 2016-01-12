@@ -5,6 +5,7 @@ var Boom = require('Boom');
 var FlickrAPI = {
     options: {
         host: null,
+        api_key: null,
         methods: {
             search: '?method=flickr.photos.search',
             image: '?method=flickr.photos.getSizes'
@@ -32,16 +33,18 @@ var FlickrAPI = {
         }
     },
     initialize: function(options) {
-        var api_key;
+        var key;
 
-        if (options.host || options.api_key) {
+        if (options.host && options.api_key && this.options.api_key === null) {
 
-            api_key = "&api_key=" + options.api_key;
+            this.options.api_key = options.api_key;
+
+            key = "&api_key=" + options.api_key;
             this.options.host = options.host;
-            this.options.methods.search += api_key;
-            this.options.methods.image += api_key;
+            this.options.methods.search += key;
+            this.options.methods.image += key;
 
-        } else {
+        } else if (this.options.api_key === null) {
             throw Error('Not host or api_key provided for flickr');
         }
     },
@@ -57,13 +60,11 @@ var FlickrAPI = {
                 method: "GET",
                 uri: o.host + o.methods.search + o.uris.search(term, limit, offset),
                 options:  {
-                    redirects: 3,
+                    redirects: 1,
                     timeout: 30000,
-                    rejectUnauthorized: false
+                    rejectUnauthorized: true
                 }
             };
-
-        console.log(http.uri);
 
         var readResponse = function (err, res) {
 
@@ -75,6 +76,7 @@ var FlickrAPI = {
         };
 
         var processResponse = function (err, response) {
+
 
             if (err) {
                 return callback(err);
@@ -141,12 +143,11 @@ var FlickrAPI = {
                 method: "GET",
                 uri: o.host + o.methods.image + o.uris.image(id),
                 options:  {
-                    redirects: 3,
+                    redirects: 1,
                     timeout: 30000,
-                    rejectUnauthorized: false
+                    rejectUnauthorized: true
                 }
             };
-        console.info(http.uri);
 
         var readResponse = function (err, res) {
 

@@ -1,30 +1,38 @@
 {
-  "name": "fliquer",
-  "version": "0.0.0",
-  "description": "Passthrough search endpoint for Flickr API",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "hapijs",
-    "flickr"
-  ],
-  "author": "Carlos Andrés López",
-  "license": "MIT",
-  "dependencies": {
-    "async": "^1.5.2",
-    "boom": "^3.1.1",
-    "confidence": "^1.4.2",
-    "glue": "^3.0.0",
-    "hapi": "^12.0.1",
-    "hapi-swagger": "^3.1.1",
-    "hoek": "^3.0.4",
-    "inert": "^3.2.0",
-    "joi": "^7.1.0",
-    "urijs": "^1.17.0",
-    "util": "^0.10.3",
-    "vision": "^4.0.1",
-    "wreck": "^7.0.0"
-  }
+    "name": "fliquer",
+    "version": "0.0.0",
+    "description": "Passthrough search endpoint for Flickr API",
+    "main": "index.js",
+    "scripts": {
+        "start": "NODE_ENV=production node index.js",
+        "dev": "NODE_ENV=dev node index.js",
+        "test": "NODE_ENV=test node_modules/lab/bin/lab -v -l",
+        "coverage": "NODE_ENV=test node_modules/lab/bin/lab -c -l -r html > test/coverage_report.html"
+    },
+    "keywords": [
+        "hapijs",
+        "flickr"
+    ],
+    "author": "Carlos Andrés López",
+    "license": "MIT",
+    "dependencies": {
+        "async": "^1.5.2",
+        "boom": "^3.1.1",
+        "confidence": "^1.4.2",
+        "glue": "^3.0.0",
+        "hapi": "^12.0.1",
+        "hapi-swagger": "^3.1.1",
+        "hoek": "^3.0.4",
+        "inert": "^3.2.0",
+        "joi": "^7.1.0",
+        "urijs": "^1.17.0",
+        "util": "^0.10.3",
+        "vision": "^4.0.1",
+        "wreck": "^7.0.0"
+    },
+    "devDependencies": {
+        "code": "^2.1.0",
+        "lab": "^8.0.1",
+        "nock": "^5.2.1"
+    }
 }

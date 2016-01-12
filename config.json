@@ -33,7 +33,7 @@
                     "register": "./plugins/fliquer",
                     "options": {
                         "api_key": "c7749bb2d38cb84d3a52bcd1cc960a17",
-                        "host": "https://api.flickr.com/services/rest/"
+                        "host": "https://api.flickr.com:443/services/rest/"
                     }
                 },
                 "options": {"select": ["api"]}
@@ -47,7 +47,7 @@
                 "options":{
                     "info": {
                         "title": "Fliquer API Documentation",
-                        "description": "This API is a simplified version of `Flickr`. It allows easy pagination over public images and uses simple `offset ` and `limit`-based pagination.",
+                        "description": "This API is a tiny wrapper of `Flickr`. It allows easy pagination over public images and uses simple `offset ` and `limit`-based pagination.",
                         "version": "1.0.0",
                         "contact": {
                             "name": "Carlos A. Lopez",
@@ -61,7 +61,8 @@
                     "register": "./plugins/fliquer",
                     "options": {
                         "api_key": "c7749bb2d38cb84d3a52bcd1cc960a17",
-                        "host": "https://api.flickr.com/services/rest/"
+                        "host": "https://api.flickr.com/services/rest/",
+                        "pageLimit": 60
                     }
                 },
                 "options": {"select": ["api"]}
