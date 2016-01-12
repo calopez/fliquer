@@ -1,7 +1,7 @@
 {
     "server": {
         "app": {
-            "appName": "simple flickr api wrapper with pagination"
+            "appName": "Simplified flickr api wrapper with pagination"
         },
         "debug": {
             "$filter": "env",
@@ -28,13 +28,34 @@
     "registrations": {
         "$filter": "env",
         "production": [
-
             {
-                "plugin":  "./plugins/fliquer",
-                "options": { "select": ["api"]}
+                "plugin":{
+                    "register": "./plugins/fliquer",
+                    "options": {
+                        "api_key": "c7749bb2d38cb84d3a52bcd1cc960a17",
+                        "host": "https://api.flickr.com/services/rest/"
+                    }
+                },
+                "options": {"select": ["api"]}
             }
         ],
         "$default": [
+            {"plugin":{"register": "inert"}},
+            {"plugin":{"register": "vision"}},
+            {"plugin":{
+                "register": "hapi-swagger",
+                "options":{
+                    "info": {
+                        "title": "Fliquer API Documentation",
+                        "description": "This API is a simplified version of `Flickr`. It allows easy pagination over public images and uses simple `offset ` and `limit`-based pagination.",
+                        "version": "1.0.0",
+                        "contact": {
+                            "name": "Carlos A. Lopez",
+                            "email": "karloslopez@me.com"
+                        }
+                    }
+                }
+            }},
             {
                 "plugin":{
                     "register": "./plugins/fliquer",
