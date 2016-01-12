@@ -1,5 +1,5 @@
 var Joi = require('joi'),
-    Hoek = require('Hoek'),
+    Hoek = require('hoek'),
     Images = require('./handlers/images'),
     urlRegex = /^https?:\/\//; /*  TODO: create better regex for url validation */
 
@@ -95,9 +95,9 @@ var routePlugins = {
 var getImageResponse = {schema: getImageResponseModel};
 var searchResponse = {schema:  searchResponseModel};
 
-function Routes(options) {
+function Routes() {
 
-    var imagesHandlers = new Images(options);
+    var imagesHandlers = new Images();
 
     var defaultHandler = function (request, reply) {
         request.route.inner_path = '/fliquer/v1/{search_term}/{limit}/{offset}';

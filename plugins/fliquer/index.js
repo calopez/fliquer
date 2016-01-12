@@ -4,7 +4,7 @@ var attributes = require('./package');
 
 
 exports.register = function (server, options, next) {
-    server.route(new Routes(options).routes);
+    server.route(new Routes().routes);
     next();
 };
 

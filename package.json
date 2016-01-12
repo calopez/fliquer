@@ -6,6 +6,7 @@
     "scripts": {
         "start": "NODE_ENV=production node index.js",
         "dev": "NODE_ENV=dev node index.js",
+        "prod": "NODE_ENV=production node index.js",
         "test": "NODE_ENV=test node_modules/lab/bin/lab -v -l",
         "coverage": "NODE_ENV=test node_modules/lab/bin/lab -c -l -r html > test/coverage_report.html"
     },
@@ -25,6 +26,7 @@
         "hoek": "^3.0.4",
         "inert": "^3.2.0",
         "joi": "^7.1.0",
+        "jsonfile": "^2.2.3",
         "urijs": "^1.17.0",
         "util": "^0.10.3",
         "vision": "^4.0.1",

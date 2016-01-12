@@ -1,6 +1,6 @@
 var Util = require('util');
 var Wreck = require('wreck');
-var Boom = require('Boom');
+var Boom = require('boom');
 
 var FlickrAPI = {
     options: {
